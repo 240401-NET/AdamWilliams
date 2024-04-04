@@ -5513,11 +5513,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper.Tests\\memoKeeper.Tests.csproj",
-      "projectName": "memoKeeper.Tests",
-      "projectPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper.Tests\\memoKeeper.Tests.csproj",
+      "projectUniqueName": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp.Tests\\memoKeeperApp.Tests.csproj",
+      "projectName": "memoKeeperApp.Tests",
+      "projectPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp.Tests\\memoKeeperApp.Tests.csproj",
       "packagesPath": "C:\\Users\\Stooge\\.nuget\\packages\\",
-      "outputPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper.Tests\\obj\\",
+      "outputPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Stooge\\AppData\\Roaming\\NuGet\\NuGet.Config"

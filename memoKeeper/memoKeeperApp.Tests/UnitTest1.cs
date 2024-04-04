@@ -1,4 +1,4 @@
-namespace memoKeeper.Tests;
+namespace memoKeeperApp.Tests;
 
 public class UnitTest1
 {

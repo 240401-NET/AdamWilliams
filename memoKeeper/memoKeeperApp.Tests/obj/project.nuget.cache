@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F9rWj1oi4BKGxvnVYJVIbCfvDdPU5ghwtjZ2o8ivlqyKBwT7rMdzw4/HSrFsMY76VLPI7lWMlkJy/cTdLG1rfA==",
+  "dgSpecHash": "FQq8M9mYw4kIcp6oypzxu0zNA2AZ3NOy9lGgZUGJCqQbuSa+h7O8vw3GwfYmBNB1co+a4QAHrpzK1JLjEKTi7g==",
   "success": true,
-  "projectFilePath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper.Tests\\memoKeeper.Tests.csproj",
+  "projectFilePath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp.Tests\\memoKeeperApp.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Stooge\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Stooge\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
