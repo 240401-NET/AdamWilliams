@@ -1,0 +1,15 @@
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.GeneratedMSBuildEditorConfig.editorconfig
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.AssemblyInfoInputs.cache
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.AssemblyInfo.cs
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.csproj.CoreCompileInputs.cache
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.sourcelink.json
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\bin\Debug\net8.0\memoKeeper.exe
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\bin\Debug\net8.0\memoKeeper.deps.json
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\bin\Debug\net8.0\memoKeeper.runtimeconfig.json
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\bin\Debug\net8.0\memoKeeper.dll
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\bin\Debug\net8.0\memoKeeper.pdb
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.dll
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\refint\memoKeeper.dll
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.pdb
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\memoKeeper.genruntimeconfig.cache
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\obj\Debug\net8.0\ref\memoKeeper.dll
