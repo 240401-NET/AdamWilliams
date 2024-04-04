@@ -16,7 +16,8 @@ class MemoManipulation {
         newMemo.message = " ";
         //Console.Clear();
 
-        //display title, followed by date, and then prompt for memo message
+        //display title, followed by date and an empty message, 
+        //and then prompt for memo message
         displayMemo(newMemo);
         Console.WriteLine("\n");
         Console.WriteLine("(Please enter your note below then press Enter:)");
