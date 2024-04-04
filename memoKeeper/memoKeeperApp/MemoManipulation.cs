@@ -23,7 +23,8 @@ public class MemoManipulation {
         Console.WriteLine("(Please enter your note below then press Enter:)");
         newMemo.message = Console.ReadLine()  ?? " ";
 
-        //Console.Clear();
+        Console.Clear();
+        displayMemo(newMemo);
         
 
         saveMenu(memoList, newMemo);
@@ -39,16 +40,17 @@ public class MemoManipulation {
         Console.WriteLine("\n \n \n");
         Console.WriteLine("(Please enter your revised note below then press Enter:)");
         m.message = Console.ReadLine()  ?? " ";
+        m.date = DateTime.Now.ToShortDateString();
         return m;
 
     }
 
     public static void saveMenu(List<Memo> memoList, Memo m){
-        Console.WriteLine("\n \n \n");
+        Console.WriteLine("\n \n");
         Console.WriteLine("1.) Save and Return to Menu");
         Console.WriteLine("2.) Edit Message");
-        Console.WriteLine("3.) Discard and Return to Menu");
-        Console.WriteLine("4.) Delete Memo");
+        Console.WriteLine("3.) Delete Memo");
+        Console.WriteLine("\n0.) Discard changes and Return to Menu");
         Console.WriteLine("\n\nPlease enter your selection.");
         
         //TODO: handle non-int and null inputs
@@ -64,14 +66,14 @@ public class MemoManipulation {
                 editMemo(m);
                 saveMenu(memoList,m);
                 break;
-            case 3: // Discard message and Return to Menu
-                m = null;
-                break;
-            case 4: // Delete Memo
+            case 3: // Delete Memo
                 if (memoList.Contains(m))
                 {
                     deleteMemo(memoList, m);
                 }
+                break;
+            case 0: // Discard message and Return to Menu
+                m = null;
                 break;
             default:
                 Console.WriteLine("Invalid selection. Please try again.");

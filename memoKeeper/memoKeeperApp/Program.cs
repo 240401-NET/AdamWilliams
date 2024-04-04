@@ -9,8 +9,8 @@ public class Program
     static void Main(string[] args){
         List<Memo> memoList;
 
-        //load memoList from file, if none make assign to new list (?hashmap?)
-        //temporarily initiate to empty list (persistance no implemented)
+        //load memoList from file, if none make assign to new list
+        //maybe make into hashmap in the future if necessary
         memoList = new();
         Data.LoadMemos(ref memoList);
 
@@ -27,7 +27,7 @@ public class Program
                  |-->select/view
                      |-->edit-->save
                      |-->delete
-                View memo by name
+                View memo by name/date
                  |-->take input-->display memo
                               |-->handle incorrect/non-existent case
                               |-->edit-->save
@@ -58,7 +58,7 @@ public class Program
                     break;
                 
                 case "3": //Search and View by title
-                    Menu.viewMemoByTitle();
+                    Menu.viewMemoByTitle(ref memoList);
                     break;
                 
                 case "4": //Write a new memo
@@ -79,12 +79,8 @@ public class Program
 
         }
                 
-        //Need a memo class
-            //|--> Store by name/title
-            //|--> Date/Time
-            //|--> Contents/Message
-        
-        //Need list (?hashmap?) of memo objects
+
+
 
         //Tests:
             //|--> Creation of memo

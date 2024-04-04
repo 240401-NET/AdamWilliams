@@ -51,10 +51,13 @@ public class Menu{
         Console.Clear();
         Console.WriteLine("\n \n \nPlease enter the date of the memo's you wish to display"+
                             $"(in the format dd/mm/yyyy not including leading 0's):");
-        Console.WriteLine("\n0.) Back.");
-        Console.WriteLine("\n \nPlease enter selection or hit Esc to return to main menu.");
+        Console.WriteLine("\n0.) Back to Main Menu.");
+        Console.WriteLine("\n \nPlease enter selection or 0 to return to main menu.");
 
         string userDate = Console.ReadLine();
+        if (userDate == "0"){
+            return;
+        }
         while(userDate.Length!=10) {
             if(Convert.ToInt32(userDate[0]) == 0 || Convert.ToInt32(userDate[2]) == 0 || userDate.Length!=8){
             Console.WriteLine("Incorrect format. Please try again.");
@@ -74,9 +77,11 @@ public class Menu{
                 if(m.date.Equals(userDate)){
                     Console.WriteLine($"{i}.) {m.title} - {m.date}");
                     matchingMemos.Add(m);
+                    i++;
                 }
-                i++;
+                
             }
+            Console.WriteLine("\n0.) Back to Main Menu");
         } else if(memoList.Count()==0){
             Console.WriteLine("List is empty. Nothing to search.");
             
@@ -86,23 +91,81 @@ public class Menu{
             Console.WriteLine("Date not found. Please try again.");
         }
 
-        var userInput = Convert.ToInt32(Console.ReadLine());
-
-        if (userInput>0)
+        try
         {
-            MemoManipulation.displayMemo(matchingMemos[userInput-1]);
-        } else if(userInput == 0){
-            printMenu();
-        } else {
-            // Console.WriteLine();
-            // viewMemoByDate();
+            var userInput = Convert.ToInt32(Console.ReadLine());
+
+            if (userInput>0)
+            {
+                MemoManipulation.displayMemo(matchingMemos[userInput-1]);
+                MemoManipulation.saveMenu(memoList, matchingMemos[userInput-1]);
+            } else if(userInput == 0){
+                return;
+            } else {
+                Console.WriteLine("Invalid Respone. Please try again.");
+                viewMemoByDate(ref memoList);
+            }
         }
+        catch (Exception e)
+        {
+            Console.WriteLine("Please enter a valid selection. Press Enter to continue.");
+            getUserInput();
+            viewMemoByDate(ref memoList);
+        }
+
+        
 
     }
 
-    public static void viewMemoByTitle(){
+    public static void viewMemoByTitle(ref List<Memo> memoList){
         Console.Clear();
-        Console.WriteLine("\n \n \nPlease enter the title of the menu:");
+        Console.WriteLine("Please enter the title of the memo (case and space sensitive) or enter 0 to return to the Main Menu:");
+        Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
+
+        string userInput = getUserInput();
+        int i = 1;
+        List<Memo> matchingMemos = new();
+
+        if(userInput == "0"){
+            return;
+        } else {
+            Console.WriteLine("\n");
+            foreach(Memo m in memoList){
+                if(m.title.Contains(userInput)){
+                    Console.WriteLine($"{i}.) {m.title} - {m.date}");
+                    matchingMemos.Add(m);
+                    i++;
+                }
+            
+            }
+            if(matchingMemos.Count == 0){
+                    Console.WriteLine($"No titles found containing \"{userInput}\".\nPress Enter to continue.");
+                    getUserInput();
+                    viewMemoByTitle(ref memoList);
+            }
+            Console.WriteLine("\n0.) Back to Main Menu");
+        }
+
+        userInput = getUserInput();
+        if(userInput == "0"){
+            return;
+        } else if(matchingMemos.Count()>0) {
+            try{
+                int index = Convert.ToInt32(userInput);
+                if (index>0)
+                {
+                    MemoManipulation.displayMemo(matchingMemos[index-1]);
+                    MemoManipulation.saveMenu(memoList, matchingMemos[index-1]);
+                }else {
+                    Console.WriteLine("Invalid Respone. Please try again.");
+                    viewMemoByDate(ref memoList);
+                }
+            } catch(Exception e) {
+                Console.WriteLine("Invalid Response. Please try again.");
+                viewMemoByDate(ref memoList);
+            }
+        }
+
     }
 
     public static string getUserInput(){
