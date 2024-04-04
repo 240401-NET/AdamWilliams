@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace memoKeeper;
 
-class Data{
+public class Data{
     //handle operations to save/load data to/from file
 
     public static void LoadMemos(ref List<Memo> memoList){

@@ -1,12 +1,12 @@
-using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
-using System.Text.RegularExpressions;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq.Expressions;
+// using System.Text.RegularExpressions;
 
 namespace memoKeeper;
 
-class Menu{
+public class Menu{
     public static void printMenu(){
-        Console.WriteLine("\n \n \n");
+        Console.Clear();
         Console.WriteLine("1.) View all memo's.");
         Console.WriteLine("2.) View memo's from a specific date.");
         Console.WriteLine("3.) Search and view memo by title.");
@@ -17,7 +17,7 @@ class Menu{
 
     public static void displayAllMemos(ref List<Memo> memoList){
         //Console.Clear();
-        Console.WriteLine("\n \n \n");
+        Console.Clear();
         int i = 1;
 
         if (memoList.Count()<i){
@@ -37,13 +37,14 @@ class Menu{
 
         int userInput = Convert.ToInt32(Console.ReadLine());
          
-            if(userInput <= memoList.Count() && userInput > 0){
-                MemoManipulation.displayMemo(memoList[userInput-1]);
-            } else {
-                return;
-            }
-        
-        Console.ReadLine();
+        if(userInput <= memoList.Count() && userInput > 0){
+            Memo m = memoList[userInput-1];
+            MemoManipulation.displayMemo(m);
+            MemoManipulation.saveMenu(memoList, m);
+        } else {
+            return;
+        }
+
     }
 
     public static void viewMemoByDate(ref List<Memo> memoList){
@@ -63,13 +64,16 @@ class Menu{
             }
         }
                 
-        
+        List<Memo> matchingMemos = new();
         if(memoList.Count()>0){
+            int i = 1;
+            
             foreach(Memo m in memoList){
                 //Console.WriteLine(userDate.Equals(m.date));
-                int i = 1;
+                
                 if(m.date.Equals(userDate)){
                     Console.WriteLine($"{i}.) {m.title} - {m.date}");
+                    matchingMemos.Add(m);
                 }
                 i++;
             }
@@ -81,7 +85,18 @@ class Menu{
         } else{
             Console.WriteLine("Date not found. Please try again.");
         }
-        
+
+        var userInput = Convert.ToInt32(Console.ReadLine());
+
+        if (userInput>0)
+        {
+            MemoManipulation.displayMemo(matchingMemos[userInput-1]);
+        } else if(userInput == 0){
+            printMenu();
+        } else {
+            // Console.WriteLine();
+            // viewMemoByDate();
+        }
 
     }
 

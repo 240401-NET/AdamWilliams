@@ -1,6 +1,6 @@
 namespace memoKeeper;
 
-class Memo{
+public class Memo{
 
     public string title{get;set;}
     public string date{get;set;}

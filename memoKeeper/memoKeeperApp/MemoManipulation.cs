@@ -2,19 +2,19 @@ using System.Runtime.CompilerServices;
 
 namespace memoKeeper;
 
-class MemoManipulation {
+public class MemoManipulation {
 
     //handle creating, editing, saving, and deleting memos
 
-    public static Memo createMemo(){
+    public static Memo createMemo(List<Memo> memoList){
         Memo newMemo = new Memo();
-        //Console.Clear();
+        Console.Clear();
         //get a title and date and save them to newMemo
         Console.WriteLine("Please enter a title for you memo:");
         newMemo.title = Console.ReadLine();
         newMemo.date = DateTime.Now.ToShortDateString();
         newMemo.message = " ";
-        //Console.Clear();
+        Console.Clear();
 
         //display title, followed by date and an empty message, 
         //and then prompt for memo message
@@ -24,9 +24,12 @@ class MemoManipulation {
         newMemo.message = Console.ReadLine()  ?? " ";
 
         //Console.Clear();
+        
 
-        saveMenu(newMemo);
-
+        saveMenu(memoList, newMemo);
+        if(newMemo != null){
+            memoList.Add(newMemo);
+        }
         return newMemo;
     }
 
@@ -40,30 +43,45 @@ class MemoManipulation {
 
     }
 
-    private static void saveMenu(Memo m){
+    public static void saveMenu(List<Memo> memoList, Memo m){
         Console.WriteLine("\n \n \n");
         Console.WriteLine("1.) Save and Return to Menu");
-        Console.WriteLine("2.) Continue editing");
+        Console.WriteLine("2.) Edit Message");
         Console.WriteLine("3.) Discard and Return to Menu");
+        Console.WriteLine("4.) Delete Memo");
         Console.WriteLine("\n\nPlease enter your selection.");
         
+        //TODO: handle non-int and null inputs
         int userInput = Convert.ToInt32(Console.ReadLine());
+        
 
         switch (userInput)
         {
             case 1: // Save and Return to Menu
+                
                 break;
             case 2: // Edit message
                 editMemo(m);
+                saveMenu(memoList,m);
                 break;
             case 3: // Discard message and Return to Menu
                 m = null;
+                break;
+            case 4: // Delete Memo
+                if (memoList.Contains(m))
+                {
+                    deleteMemo(memoList, m);
+                }
+                break;
+            default:
+                Console.WriteLine("Invalid selection. Please try again.");
+                saveMenu(memoList, m);
                 break;
         }
        
     }
 
-    public static void deleteMemo(ref List<Memo> memoList, Memo memo){
+    public static void deleteMemo(List<Memo> memoList, Memo memo){
         memoList.Remove(memo);
     }
 
@@ -74,7 +92,7 @@ class MemoManipulation {
         }else{
             dashLengthTop = m.title.Length+m.date.Length+4;
         }
-        Console.WriteLine("\n \n \n");
+        Console.Clear();
         Console.Write(" ");
         for(int x=0; x <= m.title.Length+m.date.Length+4;x++){
             Console.Write("-");

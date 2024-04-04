@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace memoKeeper;
 
-class Program
+public class Program
 {
 
     static void Main(string[] args){
@@ -17,23 +17,26 @@ class Program
         bool inMenu = true;
         string userInput = "0";
 
+        Console.Clear();
+
         
 
-        //start with Menu UI
-            //Menu:
-                //View memo list
-                //  |-->select/view
-                //      |-->edit-->save
-                //      |-->delete
-                //View memo by name
-                //  |-->take input-->display memo
-                //              |--> handle incorrect/non-existent case
-                //      |-->edit-->save
-                //      |-->delete
-                //Create new Memo
-                //  |-->save
-                //  |-->discard
-                //Exit(save changes)
+        /*start with Menu UI
+            Menu:
+                View memo list
+                 |-->select/view
+                     |-->edit-->save
+                     |-->delete
+                View memo by name
+                 |-->take input-->display memo
+                              |-->handle incorrect/non-existent case
+                              |-->edit-->save
+                              |-->delete
+                Create new Memo
+                 |-->save
+                 |-->discard
+                Exit(save changes)
+        */
         
 
 
@@ -59,12 +62,7 @@ class Program
                     break;
                 
                 case "4": //Write a new memo
-                    Memo newMemo = MemoManipulation.createMemo();
-                    if(newMemo == null){
-                        break;
-                    } else{
-                        memoList.Add(newMemo);
-                    }
+                    Memo newMemo = MemoManipulation.createMemo(memoList);
                     break;
                 
                 case "0":
