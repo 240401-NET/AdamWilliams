@@ -4,6 +4,8 @@ using System.Text;
 namespace memoKeeper;
 
 public class MenuBL(){
+
+    //handle all the business logic for Menu
     public static bool displayAllMemosBL(ref List<Memo> memoList, ref bool menuFlag){
         int userInput = 0;
         
@@ -107,57 +109,59 @@ public class MenuBL(){
     }
 
     public static bool viewMemoByTitleBL(ref List<Memo> memoList, ref bool menuFlag){
-            string userInput = Menu.getUserInput();
-            int i = 1;
-            List<Memo> matchingMemos = new();
-    
-            if(userInput == "0"){
-                menuFlag = false;
-            } else {
-                Console.Clear();
-                Console.WriteLine($"Memos containing {userInput} in the title: \n");
-                foreach(Memo m in memoList){
-                    if(m.title.Contains(userInput)){
-                        Console.WriteLine($"{i}.) {m.title} - {m.date}");
-                        matchingMemos.Add(m);
-                        i++;
-                    }
-                
+        string userInput = Menu.getUserInput();
+        int i = 1;
+        List<Memo> matchingMemos = new();
+
+        if(userInput == "0"){
+            menuFlag = false;
+        } else {
+            Console.Clear();
+            Console.WriteLine($"Memos containing {userInput} in the title: \n");
+            foreach(Memo m in memoList){
+                if(m.title.Contains(userInput)){
+                    Console.WriteLine($"{i}.) {m.title} - {m.date}");
+                    matchingMemos.Add(m);
+                    i++;
                 }
-                if(matchingMemos.Count == 0){
-                        Console.WriteLine($"No titles found containing \"{userInput}\".\nPress Enter to continue.\n");
-                }
-                Console.WriteLine("\n 0.) Back to search\n \nPlease enter your selection below:\n");
+            
             }
-            if (userInput == "0")
+            if(matchingMemos.Count == 0){
+                    Console.WriteLine($"No titles found containing \"{userInput}\".\nPress Enter to continue.\n");
+                    Menu.getUserInput();
+            }
+        Console.WriteLine("\n 0.) Back to search\n \nPlease enter your selection below:\n");
+        }
+        if (userInput != "0" && matchingMemos.Count() != 0)
+        {
+
+            bool selecting = true;
+
+            while (selecting)
             {
-    
-                bool selecting = true;
-    
-                while (selecting)
-                {
-                    userInput = Menu.getUserInput();
-                    if(userInput == "0"){
-                        selecting = false;
-                        // menuFlag = false;
-                    } else if(matchingMemos.Count()>0) {
-                        try{
-                            int index = Convert.ToInt32(userInput);
-                            if (index>0)
-                            {
-                                Memo m = matchingMemos[index-1];
-                                MemoManipulation.displayMemo(m);
-                                MemoManipulation.saveMenu(ref memoList, ref m);
-                                selecting = false;
-                            }else {
-                                Console.WriteLine("Invalid Respone. Please try again.");
-                            }
-                        } catch(Exception e) {
-                            Console.WriteLine("Invalid Response. Please try again.");
+                userInput = Menu.getUserInput();
+                if(userInput == "0"){
+                    selecting = false;
+                    // menuFlag = false;
+                } else if(matchingMemos.Count()>0) {
+                    try{
+                        int index = Convert.ToInt32(userInput);
+                        if (index>0)
+                        {
+                            Memo m = matchingMemos[index-1];
+                            MemoManipulation.displayMemo(m);
+                            MemoManipulation.saveMenu(ref memoList, ref m);
+                            selecting = false;
+                            menuFlag = false;
+                        }else {
+                            Console.WriteLine("Invalid Respone. Please try again.");
                         }
+                    } catch(Exception e) {
+                        Console.WriteLine("Invalid Response. Please try again.");
                     }
                 }
             }
+        }
         return menuFlag;
     }
 
