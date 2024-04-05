@@ -23,27 +23,32 @@ public class MemoManipulation {
         Console.WriteLine("(Please enter your note below then press Enter:)");
         newMemo.message = Console.ReadLine()  ?? " ";
 
+        //display full memo with options
         Console.Clear();
         displayMemo(newMemo);
-        
-
         saveMenu(ref memoList, ref newMemo);
         
     }
 
-    public static Memo editMemo(ref Memo m){
+    public static Memo editMemo(ref Memo memo){
 
-        displayMemo(m);
+        displayMemo(memo);
         Console.WriteLine("\n \n \n");
         Console.WriteLine("(Please enter your revised note below then press Enter:)");
-        m.message = Console.ReadLine()  ?? " ";
-        m.date = DateTime.Now.ToShortDateString();
-        return m;
+        //update the message and date
+        memo.message = Console.ReadLine()  ?? " ";
+        memo.date = DateTime.Now.ToShortDateString();
+        displayMemo(memo);
+        return memo;
 
     }
 
     public static void saveMenu(ref List<Memo> memoList, ref Memo m){
         bool saveMenuFlag = true;
+        Memo mEdit = new();
+        mEdit.message = m.message;
+        mEdit.date = m.date;
+        mEdit.title = m.title; 
         while (saveMenuFlag)
         {
             Console.WriteLine("\n \n");
@@ -53,8 +58,12 @@ public class MemoManipulation {
             Console.WriteLine("\n0.) Discard changes and Return to Menu");
             Console.WriteLine("\n\nPlease enter your selection.\n");
             
+            
+            
+            
             //TODO: handle non-int and null inputs
             int userInput = Convert.ToInt32(Console.ReadLine());
+            
             
     
             switch (userInput)
@@ -63,11 +72,18 @@ public class MemoManipulation {
                     Console.WriteLine(memoList.Contains(m));
                     if(m != null && !memoList.Contains(m)){
                         memoList.Add(m);
+                    } else if(mEdit.title != m.title){
+                        m.title = mEdit.title;
+                        
+                    } else if (mEdit.date != m.date){
+                        m.date = mEdit.date;
+                    } else if (mEdit.message != m.message){
+                        m.message = mEdit.message;
                     }
                     saveMenuFlag = false;
                     break;
                 case 2: // Edit message
-                    m = editMemo(ref m);
+                    editMemo(ref mEdit);
                     break;
                 case 3: // Delete Memo
                     if (memoList.Contains(m))
@@ -77,7 +93,6 @@ public class MemoManipulation {
                     saveMenuFlag = false;
                     break;
                 case 0: // Discard message and Return to Menu
-                    m = null;
                     saveMenuFlag = false;
                     break;
                 default:
