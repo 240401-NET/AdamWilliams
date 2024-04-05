@@ -125,53 +125,58 @@ public class Menu{
     }
 
     public static void viewMemoByTitle(ref List<Memo> memoList){
-        Console.Clear();
-        Console.WriteLine("Please enter the title of the memo (case and space sensitive):");
-        Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
-
-        string userInput = getUserInput();
-        int i = 1;
-        List<Memo> matchingMemos = new();
-
-        if(userInput == "0"){
-            return;
-        } else {
+        bool menuFlag = true;
+        
+        while (menuFlag)
+        {
             Console.Clear();
-            Console.WriteLine($"Memos containing {userInput} in the title: \n");
-            foreach(Memo m in memoList){
-                if(m.title.Contains(userInput)){
-                    Console.WriteLine($"{i}.) {m.title} - {m.date}");
-                    matchingMemos.Add(m);
-                    i++;
+            Console.WriteLine("Please enter the title of the memo (case and space sensitive):");
+            Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
+    
+            string userInput = getUserInput();
+            int i = 1;
+            List<Memo> matchingMemos = new();
+    
+            if(userInput == "0"){
+                return;
+            } else {
+                Console.Clear();
+                Console.WriteLine($"Memos containing {userInput} in the title: \n");
+                foreach(Memo m in memoList){
+                    if(m.title.Contains(userInput)){
+                        Console.WriteLine($"{i}.) {m.title} - {m.date}");
+                        matchingMemos.Add(m);
+                        i++;
+                    }
+                
                 }
-            
+                if(matchingMemos.Count == 0){
+                        Console.WriteLine($"No titles found containing \"{userInput}\".\nPress Enter to continue.\n");
+                        getUserInput();
+                        viewMemoByTitle(ref memoList);
+                }
+                Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter your selection below:\n");
             }
-            if(matchingMemos.Count == 0){
-                    Console.WriteLine($"No titles found containing \"{userInput}\".\nPress Enter to continue.\n");
-                    getUserInput();
-                    viewMemoByTitle(ref memoList);
-            }
-            Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter your selection below:\n");
-        }
-
-        userInput = getUserInput();
-        if(userInput == "0"){
-            mainMenu(ref memoList);
-        } else if(matchingMemos.Count()>0) {
-            try{
-                int index = Convert.ToInt32(userInput);
-                if (index>0)
-                {
-                    Memo m = matchingMemos[index-1];
-                    MemoManipulation.displayMemo(m);
-                    MemoManipulation.saveMenu(ref memoList, ref m);
-                }else {
-                    Console.WriteLine("Invalid Respone. Please try again.");
+    
+            userInput = getUserInput();
+            if(userInput == "0"){
+                mainMenu(ref memoList);
+            } else if(matchingMemos.Count()>0) {
+                try{
+                    int index = Convert.ToInt32(userInput);
+                    if (index>0)
+                    {
+                        Memo m = matchingMemos[index-1];
+                        MemoManipulation.displayMemo(m);
+                        MemoManipulation.saveMenu(ref memoList, ref m);
+                    }else {
+                        Console.WriteLine("Invalid Respone. Please try again.");
+                        viewMemoByDate(ref memoList);
+                    }
+                } catch(Exception e) {
+                    Console.WriteLine("Invalid Response. Please try again.");
                     viewMemoByDate(ref memoList);
                 }
-            } catch(Exception e) {
-                Console.WriteLine("Invalid Response. Please try again.");
-                viewMemoByDate(ref memoList);
             }
         }
 

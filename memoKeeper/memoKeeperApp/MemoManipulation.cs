@@ -64,6 +64,7 @@ public class MemoManipulation {
                     if(m != null && !memoList.Contains(m)){
                         memoList.Add(m);
                     }
+                    saveMenuFlag = false;
                     break;
                 case 2: // Edit message
                     m = editMemo(ref m);
@@ -73,7 +74,7 @@ public class MemoManipulation {
                     {
                         deleteMemo(ref memoList, m);
                     }
-                    Menu.mainMenu(ref memoList);
+                    saveMenuFlag = false;
                     break;
                 case 0: // Discard message and Return to Menu
                     m = null;
