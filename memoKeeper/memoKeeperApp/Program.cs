@@ -17,7 +17,28 @@ public class Program
         bool inMenu = true;
         
 
-        Console.Clear();        
+        Console.Clear();
+
+        
+
+        /*start with Menu UI
+            Menu:
+                View memo list
+                 |-->select/view
+                     |-->edit-->save
+                     |-->delete
+                View memo by name/date
+                 |-->take input-->display memo
+                              |-->handle incorrect/non-existent case
+                              |-->edit-->save
+                              |-->delete
+                Create new Memo
+                 |-->save
+                 |-->discard
+                Exit(save changes)
+        */
+        
+        
         Menu.mainMenu(ref memoList);            
 
         
