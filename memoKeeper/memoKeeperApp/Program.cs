@@ -15,7 +15,7 @@ public class Program
         Data.LoadMemos(ref memoList);
 
         bool inMenu = true;
-        string userInput = "0";
+        
 
         Console.Clear();
 
@@ -38,50 +38,10 @@ public class Program
                 Exit(save changes)
         */
         
+        
+        Menu.mainMenu(ref memoList);            
 
-
-        while (inMenu)
-        {
-            
-            Menu.printMenu();
-            userInput = Console.ReadLine();
-            
-
-            switch(userInput)
-            {
-                case "1": //View all memos
-                    Menu.displayAllMemos(ref memoList);
-                    break;
-                
-                case "2": //View list by date
-                    Menu.viewMemoByDate(ref memoList);
-                    break;
-                
-                case "3": //Search and View by title
-                    Menu.viewMemoByTitle(ref memoList);
-                    break;
-                
-                case "4": //Write a new memo
-                    Memo newMemo = MemoManipulation.createMemo(memoList);
-                    break;
-                
-                case "0":
-                    inMenu = false;
-                    break;
-                default:
-                    Console.WriteLine("Entry not valid. Please try again.");
-                    break;
-
-
-            }
-
-
-
-        }
-                
-
-
-
+        
         //Tests:
             //|--> Creation of memo
             //|--> Appending to obj list
@@ -90,4 +50,6 @@ public class Program
         Data.PersistMemo(ref memoList);
 
     }
+
+    
 }

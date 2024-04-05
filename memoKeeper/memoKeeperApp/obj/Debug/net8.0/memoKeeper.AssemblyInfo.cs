@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("memoKeeper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2c636a2ca45b708daf800f2ae8fb050203003c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e76cc6ce9c7f78636e01f3390bd13fc1744bcce")]
 [assembly: System.Reflection.AssemblyProductAttribute("memoKeeper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("memoKeeper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
