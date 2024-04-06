@@ -6,27 +6,14 @@ public class MemoManipulation {
 
     //handle creating, editing, saving, and deleting memos
 
-    public static void createMemo(ref List<Memo> memoList){
+    public static Memo createMemo(string title, string message){
         Memo newMemo = new Memo();
-        Console.Clear();
-        //get a title and date and save them to newMemo
-        Console.WriteLine("Please enter a title for you memo:");
-        newMemo.title = Console.ReadLine();
+
+        newMemo.title = title;
         newMemo.date = DateTime.Now.ToShortDateString();
-        newMemo.message = " ";
-        Console.Clear();
+        newMemo.message = message;
 
-        //display title, followed by date and an empty message, 
-        //and then prompt for memo message
-        displayMemo(newMemo);
-        Console.WriteLine("\n");
-        Console.WriteLine("(Please enter your note below then press Enter:)");
-        newMemo.message = Console.ReadLine()  ?? " ";
-
-        //display full memo with options
-        Console.Clear();
-        displayMemo(newMemo);
-        saveMenu(ref memoList, ref newMemo);
+        return newMemo;
         
     }
 
@@ -73,8 +60,7 @@ public class MemoManipulation {
                     if(m != null && !memoList.Contains(m)){
                         memoList.Add(m);
                     } else if(mEdit.title != m.title){
-                        m.title = mEdit.title;
-                        
+                        m.title = mEdit.title;                        
                     } else if (mEdit.date != m.date){
                         m.date = mEdit.date;
                     } else if (mEdit.message != m.message){

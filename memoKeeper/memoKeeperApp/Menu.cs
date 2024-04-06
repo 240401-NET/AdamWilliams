@@ -15,7 +15,7 @@ public class Menu{
         
         while (inMenu)
         {
-            Menu.printMenu();
+            printMainMenu();
             userInput = Console.ReadLine();
             
     
@@ -34,7 +34,16 @@ public class Menu{
                     break;
                 
                 case "4": //Write a new memo
-                    MemoManipulation.createMemo(ref memoList);
+                    Console.Clear();
+                    Console.WriteLine("Please enter a title for your memo:");
+                    string title = getUserInput();
+                    Console.WriteLine("Please enter a message for your memo:");
+                    string message = getUserInput();
+                    Memo newMemo = MemoManipulation.createMemo(title, message);
+                    //display full memo with options
+                    Console.Clear();
+                    MemoManipulation.displayMemo(newMemo);
+                    MemoManipulation.saveMenu(ref memoList, ref newMemo);
                     break;
                 
                 case "0":
@@ -49,37 +58,32 @@ public class Menu{
     
     }
 
-    public static void printMenu(){
+    public static void printMainMenu(){
         Console.Clear();
-        Console.WriteLine("Memo Keeper\n \n \n");
+        Console.WriteLine("Memo Keeper\n");
         Console.WriteLine("1.) View all memo's.");
         Console.WriteLine("2.) View memo's from a specific date.");
         Console.WriteLine("3.) Search and view memo by title.");
         Console.WriteLine("4.) Write new memo.");
         Console.WriteLine("\n0.) Exit.");
-        Console.WriteLine("\nPlease enter selection.\n");
+        Console.WriteLine("\nPlease enter selection number.\n");
     }
 
     public static void displayAllMemos(ref List<Memo> memoList){
-        Console.Clear();
-        
+                
         bool menuFlag = true;
 
         while (menuFlag)
         {
-            int i = 1;
+            Console.Clear();
             if (memoList.Count()<1){
                 Console.WriteLine("Empty List. No memos.");
             }
-    
-            foreach(Memo m in memoList){
-                if(m != null){
-                    Console.WriteLine($"{i}.) {m.title} - {m.date}");
-                }
-                i++;
-            } 
+
+            displayMemoList(memoList);
+            
             Console.WriteLine("\n 0.) Back.");
-            Console.WriteLine("\n \nPlease enter selection. \n");
+            Console.WriteLine("\n \nPlease enter selection number. \n");
     
             MenuBL.displayAllMemosBL(ref memoList, ref menuFlag);
 
@@ -102,27 +106,14 @@ public class Menu{
             Console.WriteLine("Please enter the date of the memo's you wish to display"+
                                         $"(in the format dd/mm/yyyy not including leading 0's):\n");
             
-        MenuBL.viewMemoByDateBL(ref memoList, ref menuFlag);
+            MenuBL.viewMemoByDateBL(ref memoList, ref menuFlag);
         
         }
         
 
     }
 
-    public static List<Memo> displayMatchingDates(List<Memo> memoList, ref List<Memo> matchingMemos, string userDate){
-        int i = 1;
-        Console.Clear();
-        Console.WriteLine($"Memos from {userDate}: \n");
-        foreach(Memo m in memoList){            
-            if(m.date.Equals(userDate)){
-                Console.WriteLine($"{i}.) {m.title} - {m.date}");
-                matchingMemos.Add(m);
-                i++;
-            }                    
-        }
 
-        return matchingMemos;
-    }
 
     public static void viewMemoByTitle(ref List<Memo> memoList){
         bool menuFlag = true;
@@ -140,5 +131,15 @@ public class Menu{
 
     public static string getUserInput(){
         return Console.ReadLine();
+    }
+
+    public static void displayMemoList(List<Memo> memos){
+        int i = 1;
+        foreach(Memo m in memos){
+            if(m != null){
+                Console.WriteLine($"{i}.) {m.title} - {m.date}");
+            }
+            i++;
+        }
     }
 }

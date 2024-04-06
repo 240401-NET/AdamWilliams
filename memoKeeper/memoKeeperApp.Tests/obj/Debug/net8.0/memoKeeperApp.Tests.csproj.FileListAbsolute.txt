@@ -98,3 +98,9 @@ D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeep
 D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\obj\Debug\net8.0\memoKeeperApp.Tests.pdb
 D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\obj\Debug\net8.0\memoKeeperApp.Tests.genruntimeconfig.cache
 D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\obj\Debug\net8.0\ref\memoKeeperApp.Tests.dll
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_memoKeeperApp.Tests
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\bin\Debug\net8.0\memoKeeper.deps.json
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\bin\Debug\net8.0\memoKeeper.runtimeconfig.json
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\bin\Debug\net8.0\memoKeeper.exe
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\bin\Debug\net8.0\memoKeeper.dll
+D:\Revature\Training\Repositories\240401-NET+AI\AdamWilliams\memoKeeper\memoKeeperApp.Tests\bin\Debug\net8.0\memoKeeper.pdb

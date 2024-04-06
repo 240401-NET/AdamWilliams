@@ -1,5 +1,6 @@
 using System.Reflection.Metadata;
 using System.Text;
+using memoKeeper;
 
 namespace memoKeeper;
 
@@ -17,6 +18,8 @@ public class MenuBL(){
 
             if(userInput > memoList.Count()){
                 Console.WriteLine("\nInvalid selection. Please try again.\n");
+                pauseForEnter();
+                goto End;
             } else if(userInput <= memoList.Count() && userInput > 0){
                 Memo m = memoList[userInput-1];
                 MemoManipulation.displayMemo(m);
@@ -30,10 +33,11 @@ public class MenuBL(){
         catch (Exception e)
         {
             Console.WriteLine("\nInvalid entry. Please enter a number. Press Enter to continue.\n");
-            Console.ReadLine();
+            pauseForEnter();
             return menuFlag;
         }
         //Console.WriteLine(menuFlag);
+        End:
         return menuFlag;
     }
 
@@ -49,53 +53,56 @@ public class MenuBL(){
                 if(userDate.Length!=10) {
                     if(userDate.Length!=8 && userDate != "0"){
                         Console.WriteLine("Incorrect format. Please try again. Press Enter to continue");
-                        Menu.getUserInput();
-                    } 
-                }
-                List<Memo> matchingMemos = new();
-                if(memoList.Count()>0){
-                    matchingMemos = Menu.displayMatchingDates(memoList, ref matchingMemos, userDate);
-                    if(matchingMemos.Count()==0){
-                        Console.Clear();
-                        Console.WriteLine("\n \nDate not found. Please try again. Press Enter to continue.\n \n");
-                        Console.ReadLine();
-                    }
-                } else if(memoList.Count()==0){
-                    Console.Clear();
-                    Console.WriteLine("List is empty. Nothing to search.\n \nPress Enter to continue.");
-                    Menu.getUserInput();                
-                }  
-                
-                if (matchingMemos.Count()>0)
-                {
-                    Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter your selection below:\n");
-                    try
-                    {
-                        var userInput = Convert.ToInt32(Menu.getUserInput());
-                        bool selecting = true;
-    
-                        while (selecting)
-                        {
-                            if (userInput>0 && matchingMemos.Count()>0)
-                            {
-                                Memo m = matchingMemos[userInput-1];
-                                MemoManipulation.displayMemo(m);
-                                MemoManipulation.saveMenu(ref memoList, ref m);
-                                menuFlag = false;
-                                selecting = false;
-                            } else if(userInput == 0){
-                                menuFlag = false;
-                                selecting = false;
+                        pauseForEnter();
+                    } else {
+                        List<Memo> matchingMemos = new();
+                        if(memoList.Count()>0){
+                            matchingMemos = getMatchingDates(memoList, ref matchingMemos, userDate);
+                            if(matchingMemos.Count()==0){
+                                Console.WriteLine("\n \nDate not found. Please try again. Press Enter to continue.\n \n");
+                                pauseForEnter();
                             } else {
-                                Console.WriteLine("Invalid Respone. Please try again. Press Enter to continue.");
-                                Menu.getUserInput();
+                                Console.Clear();
+                                Console.WriteLine($"Memos from {userDate}: \n");
+                                Menu.displayMemoList(matchingMemos);
+                            }
+                        } else if(memoList.Count()==0){
+                            Console.Clear();
+                            Console.WriteLine("List is empty. Nothing to search.\n \nPress Enter to continue.");
+                            pauseForEnter();  
+                        }
+                        if (matchingMemos.Count()>0)
+                        {
+                            Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter selection number below:\n");
+                            try
+                            {
+                                var userInput = Convert.ToInt32(Menu.getUserInput());
+                                bool selecting = true;
+            
+                                while (selecting)
+                                {
+                                    if (userInput>0 && matchingMemos.Count()>0)
+                                    {
+                                        Memo m = matchingMemos[userInput-1];
+                                        MemoManipulation.displayMemo(m);
+                                        MemoManipulation.saveMenu(ref memoList, ref m);
+                                        menuFlag = false;
+                                        selecting = false;
+                                    } else if(userInput == 0){
+                                        menuFlag = false;
+                                        selecting = false;
+                                    } else {
+                                        Console.WriteLine("Invalid Respone. Please try again. Press Enter to continue.");
+                                        pauseForEnter();
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Please enter a valid selection. Press Enter to continue.");
+                                pauseForEnter();
                             }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Please enter a valid selection. Press Enter to continue.");
-                        Menu.getUserInput();
                     }
                 }
             }
@@ -108,9 +115,18 @@ public class MenuBL(){
         return menuFlag;
     }
 
+    public static List<Memo> getMatchingDates(List<Memo> memoList, ref List<Memo> matchingMemos, string userDate){
+        foreach(Memo m in memoList){            
+            if(m.date.Equals(userDate)){
+                matchingMemos.Add(m);
+            }                    
+        }
+        return matchingMemos;
+    }
+
     public static bool viewMemoByTitleBL(ref List<Memo> memoList, ref bool menuFlag){
         string userInput = Menu.getUserInput();
-        int i = 1;
+
         List<Memo> matchingMemos = new();
 
         if(userInput == "0"){
@@ -118,19 +134,14 @@ public class MenuBL(){
         } else {
             Console.Clear();
             Console.WriteLine($"Memos containing {userInput} in the title: \n");
-            foreach(Memo m in memoList){
-                if(m.title.Contains(userInput)){
-                    Console.WriteLine($"{i}.) {m.title} - {m.date}");
-                    matchingMemos.Add(m);
-                    i++;
-                }
+            matchingMemos = getMatchingTitles(memoList, ref matchingMemos, userInput);
+            Menu.displayMemoList(matchingMemos);
             
-            }
             if(matchingMemos.Count == 0){
                     Console.WriteLine($"No titles found containing \"{userInput}\".\nPress Enter to continue.\n");
-                    Menu.getUserInput();
+                    pauseForEnter();
             }
-        Console.WriteLine("\n 0.) Back to search\n \nPlease enter your selection below:\n");
+        Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter your selection below:\n");
         }
         if (userInput != "0" && matchingMemos.Count() != 0)
         {
@@ -142,7 +153,7 @@ public class MenuBL(){
                 userInput = Menu.getUserInput();
                 if(userInput == "0"){
                     selecting = false;
-                    // menuFlag = false;
+                    menuFlag = false;
                 } else if(matchingMemos.Count()>0) {
                     try{
                         int index = Convert.ToInt32(userInput);
@@ -165,6 +176,17 @@ public class MenuBL(){
         return menuFlag;
     }
 
-
+    public static List<Memo> getMatchingTitles(List<Memo> memoList, ref List<Memo> matchingMemos, string userInput){
+        foreach(Memo m in memoList){            
+            if(m.title.Contains(userInput)){
+                matchingMemos.Add(m);
+            }                    
+        }
+        return matchingMemos;
+    }
+    public static void pauseForEnter(){
+        ConsoleKeyInfo key;
+        do{key = Console.ReadKey();} while(key.Key != ConsoleKey.Enter);
+    }
 
 }
