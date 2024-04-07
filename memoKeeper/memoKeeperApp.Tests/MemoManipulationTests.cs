@@ -8,7 +8,7 @@ public class MemoManipulationTests
     [Theory]
     [InlineData("blah", "blah blah blah")]
     
-    public void MemoManipulation_createMemoTest_CreatesNewMemo(string title, string message)
+    public void MemoManipulation_createMemoTest_CreatesNewNotNullMemo(string title, string message)
     {
         //Arrange
 

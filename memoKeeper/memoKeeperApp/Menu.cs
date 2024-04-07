@@ -16,8 +16,7 @@ public class Menu{
         while (inMenu)
         {
             printMainMenu();
-            userInput = Console.ReadLine();
-            
+            userInput = MenuBL.getUserInput();            
     
             switch(userInput)
             {
@@ -36,14 +35,14 @@ public class Menu{
                 case "4": //Write a new memo
                     Console.Clear();
                     Console.WriteLine("Please enter a title for your memo:");
-                    string title = getUserInput();
+                    string title = MenuBL.getUserInput();
                     Console.WriteLine("Please enter a message for your memo:");
-                    string message = getUserInput();
+                    string message = MenuBL.getUserInput();
                     Memo newMemo = MemoManipulation.createMemo(title, message);
                     //display full memo with options
                     Console.Clear();
                     MemoManipulation.displayMemo(newMemo);
-                    MemoManipulation.saveMenu(ref memoList, ref newMemo);
+                    saveMenu(ref memoList, ref newMemo);
                     break;
                 
                 case "0":
@@ -113,8 +112,6 @@ public class Menu{
 
     }
 
-
-
     public static void viewMemoByTitle(ref List<Memo> memoList){
         bool menuFlag = true;
         
@@ -129,10 +126,6 @@ public class Menu{
 
     }
 
-    public static string getUserInput(){
-        return Console.ReadLine();
-    }
-
     public static void displayMemoList(List<Memo> memos){
         int i = 1;
         foreach(Memo m in memos){
@@ -142,4 +135,33 @@ public class Menu{
             i++;
         }
     }
+
+    public static void saveMenu(ref List<Memo> memoList, ref Memo m){
+        bool saveMenuFlag = true;
+        Memo mEdit = new();
+        mEdit.message = m.message;
+        mEdit.date = m.date;
+        mEdit.title = m.title; 
+        while (saveMenuFlag)
+        {
+            Console.Clear();
+            MemoManipulation.displayMemo(mEdit);
+            Console.WriteLine("1.) Save and Return to Menu");
+            Console.WriteLine("2.) Edit Message");
+            Console.WriteLine("3.) Delete Memo");
+            Console.WriteLine("\n0.) Discard changes and Return to Menu");
+            Console.WriteLine("\n\nPlease enter your numerical selection.\n");
+            
+            saveMenuFlag = MenuBL.saveMenuBL(ref memoList, ref m, ref mEdit, saveMenuFlag);
+            
+            
+            
+            
+            
+    
+            
+        }
+       
+    }
+
 }

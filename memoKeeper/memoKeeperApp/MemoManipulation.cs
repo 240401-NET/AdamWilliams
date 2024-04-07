@@ -17,7 +17,7 @@ public class MemoManipulation {
         
     }
 
-    public static Memo editMemo(ref Memo memo){
+    public static Memo editMemo(Memo memo){
 
         displayMemo(memo);
         Console.WriteLine("\n \n \n");
@@ -30,67 +30,11 @@ public class MemoManipulation {
 
     }
 
-    public static void saveMenu(ref List<Memo> memoList, ref Memo m){
-        bool saveMenuFlag = true;
-        Memo mEdit = new();
-        mEdit.message = m.message;
-        mEdit.date = m.date;
-        mEdit.title = m.title; 
-        while (saveMenuFlag)
-        {
-            Console.WriteLine("\n \n");
-            Console.WriteLine("1.) Save and Return to Menu");
-            Console.WriteLine("2.) Edit Message");
-            Console.WriteLine("3.) Delete Memo");
-            Console.WriteLine("\n0.) Discard changes and Return to Menu");
-            Console.WriteLine("\n\nPlease enter your selection.\n");
-            
-            
-            
-            
-            //TODO: handle non-int and null inputs
-            int userInput = Convert.ToInt32(Console.ReadLine());
-            
-            
-    
-            switch (userInput)
-            {
-                case 1: // Save and Return to Menu
-                    Console.WriteLine(memoList.Contains(m));
-                    if(m != null && !memoList.Contains(m)){
-                        memoList.Add(m);
-                    } else if(mEdit.title != m.title){
-                        m.title = mEdit.title;                        
-                    } else if (mEdit.date != m.date){
-                        m.date = mEdit.date;
-                    } else if (mEdit.message != m.message){
-                        m.message = mEdit.message;
-                    }
-                    saveMenuFlag = false;
-                    break;
-                case 2: // Edit message
-                    editMemo(ref mEdit);
-                    break;
-                case 3: // Delete Memo
-                    if (memoList.Contains(m))
-                    {
-                        deleteMemo(ref memoList, m);
-                    }
-                    saveMenuFlag = false;
-                    break;
-                case 0: // Discard message and Return to Menu
-                    saveMenuFlag = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid selection. Please try again.");
-                    break;
-        }
-        }
-       
-    }
-
     public static void deleteMemo(ref List<Memo> memoList, Memo memo){
-        memoList.Remove(memo);
+        if (memoList.Contains(memo))
+        {
+            memoList.Remove(memo);
+        }
     }
 
     public static void displayMemo(Memo m){
@@ -127,6 +71,18 @@ public class MemoManipulation {
             Console.Write("-");
         }
         Console.Write("\n \n");
+    }
+
+    public static void saveMemo(List<Memo> memoList, ref Memo m, Memo mEdit){
+        if(m != null && !memoList.Contains(m)){
+                        memoList.Add(m);
+                    } else if(mEdit.title != m.title){
+                        m.title = mEdit.title;                        
+                    } else if (mEdit.date != m.date){
+                        m.date = mEdit.date;
+                    } else if (mEdit.message != m.message){
+                        m.message = mEdit.message;
+                    }
     }
 
 }

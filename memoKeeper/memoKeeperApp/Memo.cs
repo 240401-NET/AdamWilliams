@@ -13,7 +13,6 @@ public class Memo{
         message = m;
         AddToList(ref memoList, this);
     }
-
     private static List<Memo> AddToList(ref List<Memo> memoList, Memo m){
         memoList.Add(m);
         return memoList;

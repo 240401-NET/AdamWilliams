@@ -23,7 +23,7 @@ public class MenuBL(){
             } else if(userInput <= memoList.Count() && userInput > 0){
                 Memo m = memoList[userInput-1];
                 MemoManipulation.displayMemo(m);
-                MemoManipulation.saveMenu(ref memoList, ref m);
+                Menu.saveMenu(ref memoList, ref m);
                 menuFlag = false;       
             } else {
                 menuFlag = false;
@@ -45,7 +45,7 @@ public class MenuBL(){
 
         try
         {
-            string userDate = Menu.getUserInput();
+            string userDate = getUserInput();
 
             if (userDate == "0"){
                 menuFlag = false;
@@ -76,7 +76,7 @@ public class MenuBL(){
                             Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter selection number below:\n");
                             try
                             {
-                                var userInput = Convert.ToInt32(Menu.getUserInput());
+                                var userInput = Convert.ToInt32(getUserInput());
                                 bool selecting = true;
             
                                 while (selecting)
@@ -85,7 +85,7 @@ public class MenuBL(){
                                     {
                                         Memo m = matchingMemos[userInput-1];
                                         MemoManipulation.displayMemo(m);
-                                        MemoManipulation.saveMenu(ref memoList, ref m);
+                                        Menu.saveMenu(ref memoList, ref m);
                                         menuFlag = false;
                                         selecting = false;
                                     } else if(userInput == 0){
@@ -125,7 +125,7 @@ public class MenuBL(){
     }
 
     public static bool viewMemoByTitleBL(ref List<Memo> memoList, ref bool menuFlag){
-        string userInput = Menu.getUserInput();
+        string userInput = getUserInput();
 
         List<Memo> matchingMemos = new();
 
@@ -150,7 +150,7 @@ public class MenuBL(){
 
             while (selecting)
             {
-                userInput = Menu.getUserInput();
+                userInput = getUserInput();
                 if(userInput == "0"){
                     selecting = false;
                     menuFlag = false;
@@ -161,7 +161,7 @@ public class MenuBL(){
                         {
                             Memo m = matchingMemos[index-1];
                             MemoManipulation.displayMemo(m);
-                            MemoManipulation.saveMenu(ref memoList, ref m);
+                            Menu.saveMenu(ref memoList, ref m);
                             selecting = false;
                             menuFlag = false;
                         }else {
@@ -184,9 +184,63 @@ public class MenuBL(){
         }
         return matchingMemos;
     }
+
     public static void pauseForEnter(){
         ConsoleKeyInfo key;
         do{key = Console.ReadKey();} while(key.Key != ConsoleKey.Enter);
+    }
+
+    public static bool saveMenuBL(ref List<Memo> memoList, ref Memo m, ref Memo mEdit, bool saveMenuFlag){
+
+                string userInput = getUserInput();
+                int userInputInt = getIntUserInput(userInput);
+
+                switch (userInputInt)
+            {
+                case 1: // Save and Return to Menu
+                    MemoManipulation.saveMemo(memoList, ref m, mEdit);
+                    saveMenuFlag = false;
+                    break;
+                case 2: // Edit message
+                    mEdit = MemoManipulation.editMemo(mEdit);
+                    break;
+                case 3: // Delete Memo
+                    MemoManipulation.deleteMemo(ref memoList, m);
+                    saveMenuFlag = false;
+                    break;
+                case 0: // Discard message and Return to Menu
+                    saveMenuFlag = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid selection. Press Enter to continue");
+                    pauseForEnter();
+                    break;
+            }
+            
+
+            return saveMenuFlag;
+    }
+
+    public static string getUserInput(){
+        try
+        {
+            return Console.ReadLine();
+        }
+        catch (System.Exception)
+        {
+            return "";
+        }
+    }
+
+    public static int getIntUserInput(string UserInput){
+        try{
+            return Convert.ToInt32(UserInput);
+        } catch {
+            Console.WriteLine("Please enter a number.");
+            pauseForEnter();
+            return -1;
+        }
+        
     }
 
 }
