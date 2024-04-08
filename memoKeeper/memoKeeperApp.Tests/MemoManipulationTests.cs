@@ -1,3 +1,4 @@
+using System.Reflection;
 using memoKeeper;
 
 
@@ -80,4 +81,69 @@ public class MemoManipulationTests
         Assert.Equal(message,m.message);
 
     }
+
+    [Theory]
+    [InlineData("Memo", "4/4/2024", "Message", "New message")]
+    [InlineData("Memo", "4/4/2024", "", "New message")]
+    [InlineData("Memo", "4/4/2024", "Message", "")]
+    public void MemoManipulation_editMemo_UpdatesMessage(string title, string date, string message, string newMessage){
+        //Arrange
+        Memo memo = new Memo(title, date, message);
+
+        //Act
+        MemoManipulation.editMemo(memo,newMessage);
+        //Assert
+        Assert.Equal(newMessage, memo.message);
+    }
+
+    [Theory]
+    [InlineData("Memo", "4/4/2024", "Hello, World!")]
+    public void MemoManipulation_saveMemo_AddsMemoToList(string title, string date, string message){
+        //Arrange
+        Memo m = new(title, date, message);
+        List<Memo> memos = new();
+        int memosLength = memos.Count();
+        Memo mEdit = new(title, date, message);
+        
+        //Act
+        MemoManipulation.saveMemo(memos, ref m, mEdit);
+        
+        //Assert        
+        Assert.True(memosLength < memos.Count());
+        Assert.True(memos[0] != null);
+        Assert.True(memos[0].Equals(m));
+    }
+
+    [Theory]
+    [InlineData("Memo", "4/4/2024", "Hello, World!", "Your mom!")]
+    [InlineData("Memo", "4/4/2024", "Hello, World!", "Hello, World!")]
+    public void MemoManipulation_saveMemo_UpdatesMemo(string title, string date, string message, string newMessage){
+        //Arrange
+        Memo m = new(title, date, message);
+        List<Memo> memos = new() {m};
+        Memo mEdit = new(title, date, newMessage);
+        
+        //Act
+        MemoManipulation.saveMemo(memos, ref m, mEdit);
+        
+        //Assert        
+        Assert.True(memos[0].message == mEdit.message);
+    }
+
+    [Fact]
+    public void MemoManipulation_deleteMemo_RemovesMemoFromList(){
+        //Arrange
+        Memo m1 = new();
+        Memo m2 = new();
+        Memo m3 = new();
+        List<Memo> memos = new() {m1,m2,m3};
+        int memosLength = memos.Count();
+
+        //Act
+        MemoManipulation.deleteMemo(ref memos, m1);
+
+        //Assert
+        Assert.True(memosLength > memos.Count());
+    }
+
 }

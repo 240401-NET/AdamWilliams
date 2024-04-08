@@ -17,15 +17,12 @@ public class MemoManipulation {
         
     }
 
-    public static Memo editMemo(Memo memo){
+    public static Memo editMemo(Memo memo, string newMessage){
 
-        displayMemo(memo);
-        Console.WriteLine("\n \n \n");
-        Console.WriteLine("(Please enter your revised note below then press Enter:)");
+        
         //update the message and date
-        memo.message = Console.ReadLine()  ?? " ";
+        memo.message = newMessage;
         memo.date = DateTime.Now.ToShortDateString();
-        displayMemo(memo);
         return memo;
 
     }

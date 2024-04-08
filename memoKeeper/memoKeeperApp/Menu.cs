@@ -150,7 +150,7 @@ public class Menu{
             Console.WriteLine("2.) Edit Message");
             Console.WriteLine("3.) Delete Memo");
             Console.WriteLine("\n0.) Discard changes and Return to Menu");
-            Console.WriteLine("\n\nPlease enter your numerical selection.\n");
+            Console.WriteLine("\n\nPlease enter selection number.\n");
             
             saveMenuFlag = MenuBL.saveMenuBL(ref memoList, ref m, ref mEdit, saveMenuFlag);
             

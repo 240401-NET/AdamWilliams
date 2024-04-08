@@ -32,7 +32,7 @@ public class MenuBL(){
         }
         catch (Exception e)
         {
-            Console.WriteLine("\nInvalid entry. Please enter a number. Press Enter to continue.\n");
+            Console.WriteLine("\nInvalid entry. Press Enter to continue.\n");
             pauseForEnter();
             return menuFlag;
         }
@@ -202,7 +202,10 @@ public class MenuBL(){
                     saveMenuFlag = false;
                     break;
                 case 2: // Edit message
-                    mEdit = MemoManipulation.editMemo(mEdit);
+                    MemoManipulation.displayMemo(mEdit);
+                    Console.WriteLine("(Please enter your revised note below then press Enter:)");
+                    string newMessage = getUserInput();
+                    mEdit = MemoManipulation.editMemo(mEdit, newMessage);
                     break;
                 case 3: // Delete Memo
                     MemoManipulation.deleteMemo(ref memoList, m);
@@ -212,7 +215,7 @@ public class MenuBL(){
                     saveMenuFlag = false;
                     break;
                 default:
-                    Console.WriteLine("Invalid selection. Press Enter to continue");
+                    Console.WriteLine("Invalid entry. Press Enter to continue");
                     pauseForEnter();
                     break;
             }
@@ -222,22 +225,17 @@ public class MenuBL(){
     }
 
     public static string getUserInput(){
-        try
-        {
-            return Console.ReadLine();
+        string userInput = Console.ReadLine();
+        if(userInput == "" || userInput == null){
+            return " ";
         }
-        catch (System.Exception)
-        {
-            return "";
-        }
+        return userInput;
     }
 
     public static int getIntUserInput(string UserInput){
         try{
             return Convert.ToInt32(UserInput);
         } catch {
-            Console.WriteLine("Please enter a number.");
-            pauseForEnter();
             return -1;
         }
         

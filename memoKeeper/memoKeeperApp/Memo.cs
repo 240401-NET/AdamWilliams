@@ -7,15 +7,15 @@ public class Memo{
     public string message{get;set;}
 
     public Memo() {}
-    public Memo(string t, string d, string m, ref List<Memo> memoList) {
+    public Memo(string t, string d, string m) {
         title = t;
         date = d;
         message = m;
-        AddToList(ref memoList, this);
+        // AddToList(ref memoList, this);
     }
-    private static List<Memo> AddToList(ref List<Memo> memoList, Memo m){
-        memoList.Add(m);
-        return memoList;
-    }
+    // private static List<Memo> AddToList(ref List<Memo> memoList, Memo m){
+    //     memoList.Add(m);
+    //     return memoList;
+    // }
 
 }
