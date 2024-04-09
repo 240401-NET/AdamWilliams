@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("memoKeeperApp.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d41146c2c6cccb668a16da59f4dc8297b671ce6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2925db053ab2ee0c57f10c3d78739fdcd7fad095")]
 [assembly: System.Reflection.AssemblyProductAttribute("memoKeeperApp.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("memoKeeperApp.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

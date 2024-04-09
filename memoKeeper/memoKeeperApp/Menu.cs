@@ -32,7 +32,7 @@ public class Menu{
                     break;
                 
                 case "4": //Write a new memo
-                    Console.Clear();
+                    Menu.drawBanner();
                     Console.WriteLine("Please enter a title for your memo:");
                     string title = MenuBL.getUserInput();
                     Console.WriteLine("Please enter a message for your memo:");
@@ -57,8 +57,7 @@ public class Menu{
     }
 
     public static void printMainMenu(){
-        Console.Clear();
-        Console.WriteLine("Memo Keeper\n");
+        drawBanner();
         Console.WriteLine("1.) View all memo's.");
         Console.WriteLine("2.) View memo's from a specific date.");
         Console.WriteLine("3.) Search and view memo by title.");
@@ -73,7 +72,7 @@ public class Menu{
 
         while (menuFlag)
         {
-            Console.Clear();
+            drawBanner();
             //if there are no saved menus, or if it is the first time running:
             if (memoList.Count()<1){
                 Console.WriteLine("Empty List. No memos.");
@@ -100,7 +99,7 @@ public class Menu{
         while (menuFlag)
         {            
             
-            Console.Clear();
+            drawBanner();
             Console.WriteLine("Search for Memo by date\n");
             Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
             Console.Write("Please enter the date of the memo's you wish to display"+
@@ -118,7 +117,7 @@ public class Menu{
         
         while (menuFlag)
         {
-            Console.Clear();
+           drawBanner();
             Console.WriteLine("Search for Memo by Title\n");
             Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
             Console.Write("Please enter the title of the memo (case and space sensitive): ");
@@ -146,7 +145,7 @@ public class Menu{
         mEdit.title = m.title; 
         while (saveMenuFlag)
         {
-            Console.Clear();
+            drawBanner();
             Memo.displayMemo(mEdit);
             Console.WriteLine("1.) Save and Return to Menu");
             Console.WriteLine("2.) Edit Message");
@@ -156,14 +155,18 @@ public class Menu{
             
             saveMenuFlag = MenuBL.saveMenuBL(ref memoList, ref m, ref mEdit, saveMenuFlag);
             
-            
-            
-            
-            
-    
-            
         }
        
+    }
+
+    public static void drawBanner(){
+            Console.Clear();
+            Console.WriteLine(@"                                                   
+   __  ___                 __ __                    
+  /  |/  /__ __ _  ___    / //_/__ ___ ___  ___ ____
+ / /|_/ / -_)  ' \/ _ \  / ,< / -_) -_) _ \/ -_) __/
+/_/  /_/\__/_/_/_/\___/ /_/|_|\__/\__/ .__/\__/_/   
+                                    /_/             ");
     }
 
 }

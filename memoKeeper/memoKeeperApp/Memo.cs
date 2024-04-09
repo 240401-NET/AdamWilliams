@@ -46,7 +46,7 @@ public class Memo{
         }else{                                                  //title box to the message box.
             dashLengthTop = m.title.Length+m.date.Length+4;
         }
-        Console.Clear();                                        //draw dynamically sized border
+        Menu.drawBanner();                                        //draw dynamically sized border
         Console.Write(" ");                                     //|
         for(int x=0; x <= m.title.Length+m.date.Length+4;x++){  //|
             Console.Write("-");                                 //|

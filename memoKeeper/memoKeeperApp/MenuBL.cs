@@ -44,12 +44,12 @@ public class MenuBL(){
                             Console.WriteLine("\n \nDate not found. Please try again. Press Enter to continue.\n \n");
                             pauseForEnter();
                         } else {
-                            Console.Clear();
+                            Menu.drawBanner();
                             Console.WriteLine($"Memos from {userDate}: \n");
                             Menu.displayMemoList(matchingMemos);
                         }
                     } else if(memoList.Count()==0){
-                        Console.Clear();
+                        Menu.drawBanner();
                         Console.WriteLine("List is empty. Nothing to search.\n \nPress Enter to continue.");
                         pauseForEnter();  
                     }
@@ -109,7 +109,7 @@ public class MenuBL(){
         if(userInput == "0"){
             menuFlag = false;
         } else {
-            Console.Clear();
+            Menu.drawBanner();
             Console.WriteLine($"Memos containing {userInput} in the title: \n");
             matchingMemos = getMatchingTitles(memoList, ref matchingMemos, userInput);
             Menu.displayMemoList(matchingMemos);
