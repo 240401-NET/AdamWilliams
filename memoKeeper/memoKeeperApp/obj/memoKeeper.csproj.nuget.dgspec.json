@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memokeeperApp\\memoKeeper.csproj": {}
+    "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp\\memoKeeper.csproj": {}
   },
   "projects": {
-    "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memokeeperApp\\memoKeeper.csproj": {
+    "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp\\memoKeeper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memokeeperApp\\memoKeeper.csproj",
+        "projectUniqueName": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp\\memoKeeper.csproj",
         "projectName": "memoKeeper",
-        "projectPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memokeeperApp\\memoKeeper.csproj",
+        "projectPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp\\memoKeeper.csproj",
         "packagesPath": "C:\\Users\\Stooge\\.nuget\\packages\\",
-        "outputPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memokeeperApp\\obj\\",
+        "outputPath": "D:\\Revature\\Training\\Repositories\\240401-NET+AI\\AdamWilliams\\memoKeeper\\memoKeeperApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Stooge\\AppData\\Roaming\\NuGet\\NuGet.Config"

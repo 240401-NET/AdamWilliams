@@ -14,6 +14,7 @@ public class Program
         memoList = new();
         Data.LoadMemos(ref memoList);
        
+        //Run the Entry point for the program, the main menu
         Menu.mainMenu(ref memoList);            
 
         //save data to json file

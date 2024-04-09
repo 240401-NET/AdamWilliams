@@ -10,9 +10,8 @@ public class Menu{
     public static void mainMenu(ref List<Memo> memoList){
         string userInput = "0";
         bool inMenu = true;
-        
-
-        
+       
+               
         while (inMenu)
         {
             printMainMenu();
@@ -38,10 +37,10 @@ public class Menu{
                     string title = MenuBL.getUserInput();
                     Console.WriteLine("Please enter a message for your memo:");
                     string message = MenuBL.getUserInput();
-                    Memo newMemo = MemoManipulation.createMemo(title, message);
+                    Memo newMemo = Memo.createMemo(title, message);
                     //display full memo with options
                     Console.Clear();
-                    MemoManipulation.displayMemo(newMemo);
+                    Memo.displayMemo(newMemo);
                     saveMenu(ref memoList, ref newMemo);
                     break;
                 
@@ -52,7 +51,7 @@ public class Menu{
                     Console.WriteLine("Entry not valid. Please try again.");
                     break;
     
-        }
+            }
         }
     
     }
@@ -65,7 +64,7 @@ public class Menu{
         Console.WriteLine("3.) Search and view memo by title.");
         Console.WriteLine("4.) Write new memo.");
         Console.WriteLine("\n0.) Exit.");
-        Console.WriteLine("\nPlease enter selection number.\n");
+        Console.Write("\nPlease enter selection number: ");
     }
 
     public static void displayAllMemos(ref List<Memo> memoList){
@@ -75,14 +74,16 @@ public class Menu{
         while (menuFlag)
         {
             Console.Clear();
+            //if there are no saved menus, or if it is the first time running:
             if (memoList.Count()<1){
                 Console.WriteLine("Empty List. No memos.");
             }
 
             displayMemoList(memoList);
             
-            Console.WriteLine("\n 0.) Back.");
-            Console.WriteLine("\n \nPlease enter selection number. \n");
+            //append directions at the end of the list.
+            Console.WriteLine("\n 0.) Back to Main Menu.");
+            Console.Write("\n \nPlease enter selection number: ");
     
             MenuBL.displayAllMemosBL(ref memoList, ref menuFlag);
 
@@ -102,8 +103,8 @@ public class Menu{
             Console.Clear();
             Console.WriteLine("Search for Memo by date\n");
             Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
-            Console.WriteLine("Please enter the date of the memo's you wish to display"+
-                                        $"(in the format dd/mm/yyyy not including leading 0's):\n");
+            Console.Write("Please enter the date of the memo's you wish to display"+
+                                        $"(in the format dd/mm/yyyy not including leading 0's): ");
             
             MenuBL.viewMemoByDateBL(ref memoList, ref menuFlag);
         
@@ -118,8 +119,9 @@ public class Menu{
         while (menuFlag)
         {
             Console.Clear();
-            Console.WriteLine("Please enter the title of the memo (case and space sensitive):");
+            Console.WriteLine("Search for Memo by Title\n");
             Console.WriteLine("\n \n 0.) Back to Main Menu.\n");
+            Console.Write("Please enter the title of the memo (case and space sensitive): ");
     
             MenuBL.viewMemoByTitleBL(ref memoList, ref menuFlag);
         }
@@ -145,12 +147,12 @@ public class Menu{
         while (saveMenuFlag)
         {
             Console.Clear();
-            MemoManipulation.displayMemo(mEdit);
+            Memo.displayMemo(mEdit);
             Console.WriteLine("1.) Save and Return to Menu");
             Console.WriteLine("2.) Edit Message");
             Console.WriteLine("3.) Delete Memo");
             Console.WriteLine("\n0.) Discard changes and Return to Menu");
-            Console.WriteLine("\n\nPlease enter selection number.\n");
+            Console.Write("\n\nPlease enter selection number: ");
             
             saveMenuFlag = MenuBL.saveMenuBL(ref memoList, ref m, ref mEdit, saveMenuFlag);
             

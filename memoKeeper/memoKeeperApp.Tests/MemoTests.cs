@@ -4,19 +4,19 @@ using memoKeeper;
 
 namespace memoKeeperApp.Tests;
 
-public class MemoManipulationTests
+public class MemoTests
 {
     [Theory]
     [InlineData("blah", "blah blah blah")]
     
-    public void MemoManipulation_createMemoTest_CreatesNewNotNullMemo(string title, string message)
+    public void Memo_createMemoTest_CreatesNewNotNullMemo(string title, string message)
     {
         //Arrange
 
         
         //Act
 
-        Memo m = MemoManipulation.createMemo(title, message);
+        Memo m = Memo.createMemo(title, message);
 
         //Assert
 
@@ -30,13 +30,13 @@ public class MemoManipulationTests
     [InlineData("test", "test message")]
     [InlineData("testing", "message 2")]
     [InlineData("hmm", "is it working?")]
-    public void MemoManipulation_createMemo_AddsTitle(string title, string message){
+    public void Memo_createMemo_AddsTitle(string title, string message){
 
         //Arrange
 
         //Act
 
-        Memo m = MemoManipulation.createMemo(title, message);
+        Memo m = Memo.createMemo(title, message);
 
         //Assert
 
@@ -55,7 +55,7 @@ public class MemoManipulationTests
 
         //Act
 
-        Memo m = MemoManipulation.createMemo(title, message);
+        Memo m = Memo.createMemo(title, message);
 
         //Assert
 
@@ -74,7 +74,7 @@ public class MemoManipulationTests
 
         //Act
 
-        Memo m = MemoManipulation.createMemo(title, message);
+        Memo m = Memo.createMemo(title, message);
 
         //Assert
 
@@ -86,12 +86,12 @@ public class MemoManipulationTests
     [InlineData("Memo", "4/4/2024", "Message", "New message")]
     [InlineData("Memo", "4/4/2024", "", "New message")]
     [InlineData("Memo", "4/4/2024", "Message", "")]
-    public void MemoManipulation_editMemo_UpdatesMessage(string title, string date, string message, string newMessage){
+    public void Memo_editMemo_UpdatesMessage(string title, string date, string message, string newMessage){
         //Arrange
         Memo memo = new Memo(title, date, message);
 
         //Act
-        MemoManipulation.editMemo(memo,newMessage);
+        Memo.editMemo(memo,newMessage);
         //Assert
         Assert.Equal(newMessage, memo.message);
     }
@@ -106,7 +106,7 @@ public class MemoManipulationTests
         Memo mEdit = new(title, date, message);
         
         //Act
-        MemoManipulation.saveMemo(memos, ref m, mEdit);
+        Memo.saveMemo(memos, ref m, mEdit);
         
         //Assert        
         Assert.True(memosLength < memos.Count());
@@ -124,14 +124,14 @@ public class MemoManipulationTests
         Memo mEdit = new(title, date, newMessage);
         
         //Act
-        MemoManipulation.saveMemo(memos, ref m, mEdit);
+        Memo.saveMemo(memos, ref m, mEdit);
         
         //Assert        
         Assert.True(memos[0].message == mEdit.message);
     }
 
     [Fact]
-    public void MemoManipulation_deleteMemo_RemovesMemoFromList(){
+    public void Memo_deleteMemo_RemovesMemoFromList(){
         //Arrange
         Memo m1 = new();
         Memo m2 = new();
@@ -140,7 +140,7 @@ public class MemoManipulationTests
         int memosLength = memos.Count();
 
         //Act
-        MemoManipulation.deleteMemo(ref memos, m1);
+        Memo.deleteMemo(ref memos, m1);
 
         //Assert
         Assert.True(memosLength > memos.Count());
