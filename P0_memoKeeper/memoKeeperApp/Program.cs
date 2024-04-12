@@ -7,18 +7,15 @@ public class Program
 {
 
     static void Main(string[] args){
-        List<Memo> memoList;
 
-        //load memoList from json file, if none make assign to new list
-        //maybe make into hashmap in the future if necessary
-        memoList = new();
-        Data.LoadMemos(ref memoList);
+        
+        MemoController memoControl = new MemoController();
        
         //Run the Entry point for the program, the main menu
-        Menu.mainMenu(ref memoList);            
+        MainMenu mainMenu = new();
+        mainMenu.Execute(memoControl);          
 
-        //save data to json file
-        Data.PersistMemo(ref memoList);
+
 
     }
 
