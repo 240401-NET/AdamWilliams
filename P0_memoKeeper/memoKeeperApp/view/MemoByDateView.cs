@@ -35,7 +35,7 @@ public class MemoByDateView{
             _menuFlag = false;
         } else if (userDate != "0"){
             if(userDate.Length!=10) {
-                if(userDate.Length!=8 && userDate != "0"){
+                if(userDate.Length!=8 && userDate.Length!=9){
                     Console.WriteLine("Incorrect format. Please try again. Press Enter to continue");
                     DisplayUtils.pauseForEnter();
                 } else {
