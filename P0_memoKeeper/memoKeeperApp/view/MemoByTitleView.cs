@@ -59,7 +59,7 @@ public class MemoByTitleView{
                         }else {
                             Console.WriteLine("Invalid Respone. Please try again.");
                         }
-                    } catch(Exception e) {
+                    } catch(Exception) {
                         Console.WriteLine("Invalid Response. Please try again.");
                     }
                 }

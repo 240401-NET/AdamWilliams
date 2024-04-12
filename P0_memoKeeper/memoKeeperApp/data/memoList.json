@@ -1,1 +1,1 @@
-[{"Title":"Test","Date":"4/11/2024","Message":"Adding a new memo"},{"Title":"Edit Me","Date":"4/11/2024","Message":"IR Editted."}]
+[{"Title":"Test","Date":"4/11/2024","Message":"Adding a new memo"},{"Title":"Edit Me","Date":"4/11/2024","Message":"IR Editted."},{"Title":"Long message","Date":"4/11/2024","Message":"This is to test out message that are far longer than the desired width of the terminal in order to test out line breaks and formatting."}]

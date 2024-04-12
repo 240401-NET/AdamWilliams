@@ -3,7 +3,7 @@ using memoKeeper;
 
 namespace memoKeeperApp.Tests;
 
-public class MenuBLTests
+public class ValidatorTests
 {
 
     [Theory]
@@ -19,7 +19,7 @@ public class MenuBLTests
             expected = " ";} 
 
         //Act
-        string userInput = MenuBL.getUserInput();
+        string userInput = Validator.getUserInput();
 
         //Assert
         Assert.True(userInput!=null);
@@ -36,7 +36,7 @@ public class MenuBLTests
         //Arrange
 
         //Act
-        var userIntInput = MenuBL.getIntUserInput(userInput);
+        var userIntInput = Validator.getIntUserInput(userInput);
         //Assert
         Assert.Equal(typeof(int), userIntInput.GetType());
     }

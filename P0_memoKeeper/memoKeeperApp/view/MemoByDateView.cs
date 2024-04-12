@@ -82,7 +82,7 @@ public class MemoByDateView{
                                 }
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             Console.WriteLine("Please enter a valid selection. Press Enter to continue.");
                             DisplayUtils.pauseForEnter();
