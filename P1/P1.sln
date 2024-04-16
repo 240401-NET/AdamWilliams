@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoKeeper.API", "MemoKeeper.API\MemoKeeper.API.csproj", "{D88ABF63-74A1-47F2-A46E-1EF544CAAC14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoKeeper.Data", "MemoKeeper.Data\MemoKeeper.Data.csproj", "{D97CE84C-0C7D-462C-8466-7654F86E0619}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoKeeper.Models", "MemoKeeper.Models\MemoKeeper.Models.csproj", "{13B2C13D-514A-48C1-B1AB-FDC92896C06F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D88ABF63-74A1-47F2-A46E-1EF544CAAC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D88ABF63-74A1-47F2-A46E-1EF544CAAC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D88ABF63-74A1-47F2-A46E-1EF544CAAC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D88ABF63-74A1-47F2-A46E-1EF544CAAC14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97CE84C-0C7D-462C-8466-7654F86E0619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97CE84C-0C7D-462C-8466-7654F86E0619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97CE84C-0C7D-462C-8466-7654F86E0619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97CE84C-0C7D-462C-8466-7654F86E0619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98F08F47-0738-495B-B715-29DF155B09AE}
+	EndGlobalSection
+EndGlobal
