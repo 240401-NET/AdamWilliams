@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MemoKeeper.Data\MemoKeeper.Data.csproj" />
     <ProjectReference Include="..\MemoKeeper.Models\MemoKeeper.Models.csproj" />
+    <ProjectReference Include="..\MemoKeeper.API\MemoKeeper.API.csproj" />
   </ItemGroup>
 
 </Project>

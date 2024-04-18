@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoKeeper.Data", "MemoKeep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoKeeper.Models", "MemoKeeper.Models\MemoKeeper.Models.csproj", "{13B2C13D-514A-48C1-B1AB-FDC92896C06F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoKeeper.Tests", "MemoKeeper.Tests\MemoKeeper.Tests.csproj", "{CBEBD422-1CBB-4254-BAFC-A477230C7540}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13B2C13D-514A-48C1-B1AB-FDC92896C06F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBEBD422-1CBB-4254-BAFC-A477230C7540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBEBD422-1CBB-4254-BAFC-A477230C7540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBEBD422-1CBB-4254-BAFC-A477230C7540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBEBD422-1CBB-4254-BAFC-A477230C7540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

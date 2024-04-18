@@ -34,6 +34,12 @@ public class MemoRepository : IRepository
         return _context.Memo.Find(id);
     }
 
+    public List<Memo> GetMemoByDate(string date)
+    {
+        return _context.Memo.Where(m => m.Date.Equals(date, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+
     public Memo EditMemo(int id, Memo editedMemo)
     {
         Memo memo = GetMemoById(id);

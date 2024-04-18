@@ -19,30 +19,61 @@ namespace MemoKeeper.API.Controllers;
         }
 
         [HttpGet ("/allmemos")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<Memo> GetAllMemos()
         {
              return _memoService.GetAllMemos();
         }
 
+        [HttpGet ("/search{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public Memo GetMemoById(int id)
+        {
+            return _memoService.GetMemoById(id);
+        }
+
+        [HttpGet ("/search/{date}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<List<Memo>> GetMemoByDate(string date)
+        {
+            try
+            {
+                List<Memo> memos = _memoService.GetMemoByDate(date);
+                if(!memos.Any())
+                {
+                    return NoContent();
+                }
+                return Ok(memos);
+            }
+            catch (FormatException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
         [HttpPost ("/addmemo")]
-        public Memo AddMemo([FromBody] Memo memo)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public Memo AddMemo([FromBody]Memo memo)
         {
             return _memoService.CreateNewMemo(memo);
         }
 
-        [HttpPost ("/deletememo")]
-        public void DeleteMemo([FromQuery] int id)
+        [HttpDelete ("/deletememo")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public void DeleteMemo([FromQuery]int id)
         {
             _memoService.DeleteMemo(id); 
         }
 
-        [HttpPost ("/editmemo")] 
-        public Memo EditMemo([FromQuery]int id, Memo editedMemo)
+        [HttpPost ("/editmemo")]
+        [ProducesResponseType(StatusCodes.Status200OK)] 
+        public Memo EditMemo([FromQuery]int id, [FromBody]Memo editedMemo)
         {
             return _memoService.EditMemo(id, editedMemo);
         }
 
-        [HttpPost ("/deleteallmemos")]
+        [HttpDelete ("/deleteallmemos")]
         public void DeleteAllMemos()
         {
             _memoService.DeleteAllMemos();

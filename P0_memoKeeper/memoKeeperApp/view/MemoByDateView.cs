@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace memoKeeper;
@@ -30,69 +31,71 @@ public class MemoByDateView{
     public void viewMemoByDateBL(MemoController memoControl, List<Memo> memoList){
 
         string userDate = Validator.getUserInput();
-
-        if (userDate == "0"){
+        bool isValid = Validator.IsValidDateFormat(userDate);
+        
+        if (userDate == "0")
+        {
             _menuFlag = false;
-        } else if (userDate != "0"){
-            if(userDate.Length!=10) {
-                if(userDate.Length!=8 && userDate.Length!=9){
-                    Console.WriteLine("Incorrect format. Please try again. Press Enter to continue");
-                    DisplayUtils.pauseForEnter();
-                } else {
+        } else if (userDate != "0")
+        {
+            if(!isValid) {
+                
+                Console.WriteLine("Incorrect format. Please try again. Press Enter to continue");
+                DisplayUtils.pauseForEnter();
+            } else {
 
-                    if(memoList.Count()>0){
-                        getMatchingDates(memoList, userDate);
-                        if(matchingMemos.Count()==0){
-                            Console.WriteLine("\n \nDate not found. Please try again. Press Enter to continue.\n \n");
-                            DisplayUtils.pauseForEnter();
-                        } else {
-                            DisplayUtils.drawBanner();
-                            Console.WriteLine($"Memos from {userDate}: \n");
-                            DisplayUtils.displayMemoList(matchingMemos);
-                        }
-                    } else if(memoList.Count()==0){
+                if(memoList.Count()>0){
+                    getMatchingDates(memoList, userDate);
+                    if(matchingMemos.Count()==0){
+                        Console.WriteLine("\n \nDate not found. Please try again. Press Enter to continue.\n \n");
+                        DisplayUtils.pauseForEnter();
+                    } else {
                         DisplayUtils.drawBanner();
-                        Console.WriteLine("List is empty. Nothing to search.\n \nPress Enter to continue.");
-                        DisplayUtils.pauseForEnter();  
+                        Console.WriteLine($"Memos from {userDate}: \n");
+                        DisplayUtils.displayMemoList(matchingMemos);
                     }
-                    if (matchingMemos.Count()>0)
+                } else if(memoList.Count()==0){
+                    DisplayUtils.drawBanner();
+                    Console.WriteLine("List is empty. Nothing to search.\n \nPress Enter to continue.");
+                    DisplayUtils.pauseForEnter();  
+                }
+                if (matchingMemos.Count()>0)
+                {
+                    Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter selection number below:\n");
+                    try
                     {
-                        Console.WriteLine("\n 0.) Back to Main Menu\n \nPlease enter selection number below:\n");
-                        try
+                        
+                        bool selecting = true;
+    
+                        while (selecting)
                         {
                             var userInput = Validator.getIntUserInput(Validator.getUserInput());
-                            bool selecting = true;
-        
-                            while (selecting)
+                            if (userInput>0 && matchingMemos.Count()>0)
                             {
-                                if (userInput>0 && matchingMemos.Count()>0)
-                                {
-                                    Memo m = matchingMemos[userInput-1];
-                                    DisplayUtils.displayMemo(m);
-                                    SaveMenuView saveMenuView = new SaveMenuView();
-                                    saveMenuView.Execute(memoControl, m);
-                                    _menuFlag = false;
-                                    selecting = false;
-                                } else if(userInput == 0){
-                                    _menuFlag = false;
-                                    selecting = false;
-                                } else {
-                                    Console.WriteLine("Invalid Respone. Please try again. Press Enter to continue.");
-                                    DisplayUtils.pauseForEnter();
-                                }
+                                Memo m = matchingMemos[userInput-1];
+                                DisplayUtils.displayMemo(m);
+                                SaveMenuView saveMenuView = new SaveMenuView();
+                                saveMenuView.Execute(memoControl, m);
+                                _menuFlag = false;
+                                selecting = false;
+                            } else if(userInput == 0){
+                                _menuFlag = false;
+                                selecting = false;
+                            } else {
+                                Console.WriteLine("Invalid Respone. Please try again. Press Enter to continue.");
+                                DisplayUtils.pauseForEnter();
                             }
                         }
-                        catch (Exception)
-                        {
-                            Console.WriteLine("Please enter a valid selection. Press Enter to continue.");
-                            DisplayUtils.pauseForEnter();
-                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Please enter a valid selection. Press Enter to continue.");
+                        DisplayUtils.pauseForEnter();
                     }
                 }
             }
         }
-        
-
+    
     }
 
     public void getMatchingDates(List<Memo> memoList, string userDate){
