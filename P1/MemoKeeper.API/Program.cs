@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MemoKeeper.Data;
+using MemoKeeper.Models;
+using MemoKeeper.Services;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddDbContext<MemoDbContext>(option => option.UseSqlServer(builder.Configuration["dbconnectionstr"]));
-builder.Services.AddScoped<MemoRepository>();
+builder.Services.AddDbContext<MemoDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Memo_Local")));
+builder.Services.AddScoped<IMemoService, MemoService>();
+builder.Services.AddScoped<IRepository, MemoRepository>();
 builder.Services.AddControllers();
 
 
