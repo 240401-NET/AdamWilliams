@@ -3,6 +3,7 @@ using MemoKeeper.Models;
 using MemoKeeper.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 
 
 namespace MemoKeeper.API.Controllers;
@@ -12,17 +13,31 @@ namespace MemoKeeper.API.Controllers;
     public class MemoController : ControllerBase
     {
         private readonly IMemoService _memoService;
+        private IMemoryCache _memoryCache;
         
-        public MemoController(IMemoService memoService)
+        public MemoController(IMemoService memoService, IMemoryCache memoryCache)
         {
             _memoService = memoService;
+            _memoryCache = memoryCache;
         }
 
         [HttpGet ("/allmemos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<Memo> GetAllMemos()
         {
-             return _memoService.GetAllMemos();
+            IEnumerable<Memo> allMemos;
+
+            if(_memoryCache.TryGetValue("allMemos", out allMemos))
+            {
+                return allMemos;
+            } else
+            {
+                allMemos = _memoService.GetAllMemos().ToList();
+                _memoryCache.Set("allMemos", allMemos, new TimeSpan(0,0,30));
+                return allMemos;
+            }
+
+        
         }
 
         [HttpGet ("/search{id}")]

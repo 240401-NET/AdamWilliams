@@ -5,6 +5,7 @@ using MemoKeeper.Services;
 using MemoKeeper.API;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
 using MemoKeeper.API.Controllers;
+using Microsoft.Extensions.Caching.Memory;
 
 
 namespace MemoKeeper.Tests;
@@ -16,6 +17,8 @@ public class MemoControllerTest
     {
         //Arrange
         Mock<IMemoService> serviceMock = new Mock<IMemoService>();
+        var cache = new MemoryCache(new MemoryCacheOptions());
+        
         IEnumerable<Memo> fakeMemos = 
         [
             new Memo{
@@ -27,7 +30,7 @@ public class MemoControllerTest
         ];
 
         serviceMock.Setup(s => s.GetAllMemos()).Returns(fakeMemos);
-        MemoController controller = new MemoController(serviceMock.Object);
+        MemoController controller = new MemoController(serviceMock.Object, cache);
 
         //Act
         IEnumerable<Memo> allMemos = controller.GetAllMemos();
