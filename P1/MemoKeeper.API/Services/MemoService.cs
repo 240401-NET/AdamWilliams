@@ -40,15 +40,15 @@ public class MemoService : IMemoService
         return _memoRepo.CreateNewMemo(memo);
     }
 
-    public void DeleteMemo(int id)
-    {
-        _memoRepo.DeleteMemo(id);
-    }
-
     public Memo EditMemo(int id, Memo editedMemo)
     {
         Memo updatedMemo = _memoRepo.EditMemo(id, editedMemo);
         return updatedMemo;
+    }
+
+    public void DeleteMemo(int id)
+    {
+        _memoRepo.DeleteMemo(id);
     }
 
     public void DeleteAllMemos()

@@ -221,25 +221,17 @@ var assemblies = [
   {
     "name": "MemoKeeper.API",
     "classes": [
-      { "name": "MemoKeeper.API.Controllers.MemoController", "rp": "MemoKeeper.API_MemoController.html", "cl": 0, "ucl": 33, "cal": 33, "tl": 82, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "MemoKeeper.Services.MemoService", "rp": "MemoKeeper.API_MemoService.html", "cl": 17, "ucl": 13, "cal": 30, "tl": 58, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Program", "rp": "MemoKeeper.API_Program.html", "cl": 0, "ucl": 34, "cal": 34, "tl": 60, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "WeatherForecast", "rp": "MemoKeeper.API_WeatherForecast.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 60, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "MemoKeeper.API.Controllers.MemoController", "rp": "MemoKeeper.API_MemoController.html", "cl": 7, "ucl": 26, "cal": 33, "tl": 82, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "MemoKeeper.Services.MemoService", "rp": "MemoKeeper.API_MemoService.html", "cl": 24, "ucl": 6, "cal": 30, "tl": 58, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "MemoKeeper.Data",
     "classes": [
-      { "name": "MemoKeeper.Data.MemoDbContext", "rp": "MemoKeeper.Data_MemoDbContext.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 14, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "MemoKeeper.Data.MemoRepository", "rp": "MemoKeeper.Data_MemoRepository.html", "cl": 0, "ucl": 35, "cal": 35, "tl": 57, "cb": 0, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "MemoKeeper.Data.Migrations.AddedServiceLayer", "rp": "MemoKeeper.Data_AddedServiceLayer.html", "cl": 0, "ucl": 34, "cal": 34, "tl": 76, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "MemoKeeper.Data.Migrations.fixedConnectionString", "rp": "MemoKeeper.Data_fixedConnectionString.html", "cl": 0, "ucl": 34, "cal": 34, "tl": 76, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "MemoKeeper.Data.Migrations.initial", "rp": "MemoKeeper.Data_initial.html", "cl": 0, "ucl": 50, "cal": 50, "tl": 90, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "MemoKeeper.Data.Migrations.MemoDbContextModelSnapshot", "rp": "MemoKeeper.Data_MemoDbContextModelSnapshot.html", "cl": 0, "ucl": 30, "cal": 30, "tl": 51, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "MemoKeeper.Models",
     "classes": [
-      { "name": "MemoKeeper.Models.Memo", "rp": "MemoKeeper.Models_Memo.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "MemoKeeper.Models.Memo", "rp": "MemoKeeper.Models_Memo.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -248,23 +240,9 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
-      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
-      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
-  {
-    "assembly": "MemoKeeper.Data", "class": "MemoKeeper.Data.MemoRepository", "reportPath": "MemoKeeper.Data_MemoRepository.html", "methodName": "EditMemo(System.Int32,MemoKeeper.Models.Memo)", "methodShortName": "EditMemo(...)", "fileIndex": 0, "line": 44,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "MemoKeeper.API", "class": "Program", "reportPath": "MemoKeeper.API_Program.html", "methodName": "<Main>$(System.String[])", "methodShortName": "<Main>$(...)", "fileIndex": 0, "line": 8,
-    "metrics": [
-      { "value": 20, "exceeded": true },
-      { "value": 4, "exceeded": false },
-    ]},
 ];
 
 var branchCoverageAvailable = true;

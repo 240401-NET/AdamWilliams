@@ -151,4 +151,26 @@ public class MemoServiceTest
         Assert.True(returnedMemo is not null);
         Assert.Equal(returnedMemo, memo);
     }
+
+    [Fact]
+    public void MemoService_EditMemo_ReturnsUpdatedMemo()
+    {
+        Mock<IRepository> repoMock = new Mock<IRepository>();
+        int id = 4;
+        Memo editedMemo =  new Memo{
+                Id = id,
+                Title = "New Memo",
+                Date = "12/12/2012",
+                Message = "This is an edited message."
+            };
+        repoMock.Setup(repo => repo.EditMemo(id, editedMemo)).Returns(editedMemo);
+        MemoService service = new MemoService(repoMock.Object);
+
+        //Act
+        Memo updatedMemo = service.EditMemo(id, editedMemo);
+
+        //Assert
+        Assert.True(updatedMemo is not null);
+        Assert.Equal(updatedMemo, editedMemo);
+    }    
 }

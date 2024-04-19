@@ -59,18 +59,18 @@ namespace MemoKeeper.API.Controllers;
             return _memoService.CreateNewMemo(memo);
         }
 
-        [HttpDelete ("/deletememo")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public void DeleteMemo([FromQuery]int id)
-        {
-            _memoService.DeleteMemo(id); 
-        }
-
         [HttpPost ("/editmemo")]
         [ProducesResponseType(StatusCodes.Status200OK)] 
         public Memo EditMemo([FromQuery]int id, [FromBody]Memo editedMemo)
         {
             return _memoService.EditMemo(id, editedMemo);
+        }
+
+        [HttpDelete ("/deletememo")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public void DeleteMemo([FromQuery]int id)
+        {
+            _memoService.DeleteMemo(id); 
         }
 
         [HttpDelete ("/deleteallmemos")]

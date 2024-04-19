@@ -10,10 +10,12 @@ public class MemoRepository : IRepository
     {
         _context = context;
     }
+
     public IEnumerable<Memo> GetAllMemos()
     {
         return _context.Memo;
     }
+
     public Memo CreateNewMemo(Memo memo)
     {
         memo.Date = DateTime.Now.ToShortDateString();
@@ -21,12 +23,6 @@ public class MemoRepository : IRepository
         _context.SaveChanges();
 
         return memo;
-    }
-    public void DeleteMemo(int id)
-    {
-        Memo memo = GetMemoById(id);
-        _context.Memo.Remove(memo);
-        _context.SaveChanges();
     }
 
     public Memo GetMemoById(int id)
@@ -39,7 +35,6 @@ public class MemoRepository : IRepository
         return _context.Memo.Where(m => m.Date.Equals(date, StringComparison.OrdinalIgnoreCase)).ToList();
     }
 
-
     public Memo EditMemo(int id, Memo editedMemo)
     {
         Memo memo = GetMemoById(id);
@@ -48,6 +43,13 @@ public class MemoRepository : IRepository
         memo.Message = memo.Message.Equals(editedMemo.Message)?memo.Message:editedMemo.Message;
         _context.SaveChanges();
         return memo;
+    }
+
+    public void DeleteMemo(int id)
+    {
+        Memo memo = GetMemoById(id);
+        _context.Memo.Remove(memo);
+        _context.SaveChanges();
     }
 
     public void DeleteAllMemos()
