@@ -40,7 +40,7 @@ namespace MemoKeeper.API.Controllers;
         
         }
 
-        [HttpGet ("/search{id}")]
+        [HttpGet ("/memo/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public Memo GetMemoById(int id)
         {
